@@ -1,0 +1,107 @@
+
+1=>
+#include <stdio.h>
+#include <string.h>
+
+void ReverseText(char *text) {
+    int i, j;
+    char temp;
+    int length = strlen(text);
+    
+    for (i = 0, j = length - 1; i < j; i++, j--) {
+        temp = text[i];
+        text[i] = text[j];
+        text[j] = temp;
+    }
+}
+
+int main() {
+    char text[100];
+    
+    printf("Metni girin: ");
+    fgets(text, sizeof(text), stdin);
+    
+    // fgets, satır sonunu da alır, bu nedenle satır sonunu kaldırmamız gerekiyor
+    text[strcspn(text, "\n")] = '\0';
+    
+    ReverseText(text);
+    
+    printf("Metnin tersi: %s\n", text);
+    
+    return 0;
+}
+
+2=>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool IsPalindrome(const char *word) {
+    int length = strlen(word);
+    int i, j;
+    
+    for (i = 0, j = length - 1; i < j; i++, j--) {
+        if (word[i] != word[j]) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+int main() {
+    char word[100];
+    
+    printf("Kelimeyi girin: ");
+    scanf("%s", word);
+    
+    if (IsPalindrome(word)) {
+        printf("%s bir palindromdur.\n", word);
+    } else {
+        printf("%s bir palindrom değildir.\n", word);
+    }
+    
+    return 0;
+}
+
+
+3=>
+#include <stdio.h>
+
+void SortIntArr(int arr[], int size) {
+    int i, j, temp;
+    
+    for (i = 0; i < size - 1; i++) {
+        for (j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int size, i;
+    
+    printf("Dizinin boyutunu girin: ");
+    scanf("%d", &size);
+    
+    int arr[size];
+    
+    printf("Dizinin elemanlarını girin: ");
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    SortIntArr(arr, size);
+    
+    printf("Sıralanmış dizi: ");
+    for (i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
